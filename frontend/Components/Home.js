@@ -38,12 +38,11 @@ const Home = (props) => {
 
     await window.contract.nft_mint(
       {
-        token_id: `${window.accountId}-go-team-poke`,
+        token_id: `${window.accountId}-go-team-apple`,
         metadata: {
           title: "My Non Fungible Team Token",
           description: "The Team Most Certainly Goes :)",
-          media:
-            "https://simg.nicepng.com/png/small/6-67471_1-reply-20-retweets-87-likes-machoke-nsfw.png",
+          media: "",
         },
         receiver_id: window.accountId,
       },
@@ -85,9 +84,7 @@ const Home = (props) => {
     //   ],
     // });
 
-    if (
-      await contract.check_token({ id: `${window.accountId}-go-team-poke` })
-    ) {
+    if (await contract.check_token({ id: `${window.accountId}-go-dc-nft` })) {
       await window.contract.remove_item(
         {
           name: name,
@@ -112,12 +109,12 @@ const Home = (props) => {
 
       await window.contract.nft_mint(
         {
-          token_id: `${window.accountId}-go-team-poke`,
+          token_id: `${window.accountId}-go-dc-nft`,
           metadata: {
             title: "My Non Fungible Team Token",
             description: "The Team Most Certainly Goes :)",
             media:
-              "https://simg.nicepng.com/png/small/6-67471_1-reply-20-retweets-87-likes-machoke-nsfw.png",
+              "https://static.wikia.nocookie.net/adventuretimewithfinnandjake/images/3/3b/Jakesalad.png/revision/latest?cb=20190807133015",
           },
           receiver_id: window.accountId,
         },

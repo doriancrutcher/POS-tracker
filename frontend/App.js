@@ -31,7 +31,14 @@ import Owned from "./Components/Owned";
 export default function App() {
   const [images, setImages] = React.useState([]);
   const [altHome, changeAltHome] = React.useState(<AltHome />);
-  const maxNumber = 69;
+  const [isOwner, changeIsOwner] = useState(false);
+  useEffect(() => {
+    const getOwner = async () => {
+      let isOwner = await window.contract.get_contract_owner();
+      changeIsOwner(isOwner === window.accountId);
+    };
+    getOwner();
+  }, []);
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -54,7 +61,9 @@ export default function App() {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='me-auto'>
-              <Nav.Link href='/newproduct'>Add Item</Nav.Link>
+              {isOwner ? (
+                <Nav.Link href='/newproduct'>Add Item</Nav.Link>
+              ) : null}
               <Nav.Link href='/'>Shop</Nav.Link>
               <Nav.Link href='/owned'>Owned</Nav.Link>
             </Nav>

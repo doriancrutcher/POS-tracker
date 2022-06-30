@@ -47,6 +47,7 @@ export async function initContract() {
         "get_product_price",
         "check_token",
         "get_product_by_owner",
+        "get_contract_owner",
       ],
       // Change methods can modify the state. But you don't receive the returned value when called.
       changeMethods: [
