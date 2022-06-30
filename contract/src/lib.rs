@@ -158,7 +158,7 @@ impl Contract {
        result_vec
     }
 
-    pub fn add_product_to_owner(&mut self,name:String,user:AccountId){
+    pub fn add_product_to_owner(&mut self,name:String){
        let user= env::signer_account_id();
        let mut current_vec:Vec<String>=self.products_by_owner.get(&user).unwrap_or(vec![]);
         current_vec.push(name.to_string());
@@ -171,6 +171,10 @@ impl Contract {
         self.products_by_owner.get(&name).unwrap_or(vec![])
     }
 
+    pub fn get_contract_owner(&self)->String{
+        self.owner_id.to_string()
+    }
+
     
 
     #[payable]
@@ -179,7 +183,7 @@ impl Contract {
         self.sold_name.push(&name);
         
         self.product_price.remove(&name);
-        self.add_product_to_owner(name,owner);
+        self.add_product_to_owner(name);
         self.product_names.swap_remove(index);
 
         // crate::mint::nft_mint(
